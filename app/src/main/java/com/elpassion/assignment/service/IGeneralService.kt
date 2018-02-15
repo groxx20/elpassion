@@ -1,9 +1,9 @@
 package com.elpassion.assignment.service
 
-import com.elpassion.assignment.dto.ResponseDto
-import com.elpassion.assignment.dto.ResponseDtoWeather
-import com.elpassion.assignment.model.Place
-import com.elpassion.assignment.model.Weather
+import com.elpassion.assignment.dto.ResponseDtoRepos
+import com.elpassion.assignment.dto.ResponseDtoUser
+import com.elpassion.assignment.model.Repository
+import com.elpassion.assignment.model.User
 import com.elpassion.assignment.network.data.NetworkError
 
 /**
@@ -11,19 +11,19 @@ import com.elpassion.assignment.network.data.NetworkError
  */
 interface IGeneralService {
 
-    interface OnGetPlaceListener {
-        fun onSuccess(place: ResponseDto<Place>)
-        fun onFailure(networkError: NetworkError)
+    interface OnGetUsersListener {
+        fun onSuccessUsers(users: ResponseDtoUser<User>)
+        fun onFailureUsers(networkError: NetworkError)
     }
 
-    interface OnGetInfoListener {
-        fun onSuccess(weather: ResponseDtoWeather<Weather>)
-        fun onFailure(networkError: NetworkError)
+    interface OnGetReposListener {
+        fun onSuccessRepos(repos: ResponseDtoRepos<Repository>)
+        fun onFailureRepos(networkError: NetworkError)
     }
 
-    fun getPlaces( name:String,listener: OnGetPlaceListener)
+    fun getUsers( query:String,listener: OnGetUsersListener)
 
-    fun getInfo(south: Double, north:Double , east: Double, west: Double,listener: OnGetInfoListener)
+    fun getRepos( query:String,listener: OnGetReposListener)
 
     fun cancelNetworkRequest()
 

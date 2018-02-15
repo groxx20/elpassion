@@ -68,10 +68,10 @@ class MainActivity : AppCompatActivity() , MainView{
     /**
      *  Move forward
      */
-    override fun goNext(city:String) {
+    override fun goNext(user:String) {
 
         hideKeyboard()
-        goToActivity<DetailActivity> { putExtra("city", city) }
+        goToActivity<DetailActivity> { putExtra("user", user) }
     }
 
     /**
