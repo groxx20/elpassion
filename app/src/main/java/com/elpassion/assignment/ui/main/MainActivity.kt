@@ -9,8 +9,8 @@ import android.support.v7.widget.SearchView
 import android.view.View
 import com.elpassion.assignment.PassionApp
 import com.elpassion.assignment.R
-import com.elpassion.assignment.adapter.PlaceAdapter
-import com.elpassion.assignment.model.Place
+import com.elpassion.assignment.adapter.ItemsAdapter
+import com.elpassion.assignment.model.ItemList
 import com.elpassion.assignment.ui.detail.DetailActivity
 import com.elpassion.assignment.ui.main.di.components.DaggerMainComponent
 import com.elpassion.assignment.ui.main.di.components.MainComponent
@@ -30,9 +30,8 @@ class MainActivity : AppCompatActivity() , MainView{
     @Inject
     lateinit var mainPresenter: MainPresenterImpl
 
-    private var placeAdapter: PlaceAdapter? = null
-    private var places: List<Place>? = null
-    var isBound = false
+    private var itemsAdapter: ItemsAdapter? = null
+    private var items: List<ItemList>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,10 +76,19 @@ class MainActivity : AppCompatActivity() , MainView{
     /**
      *  Fill recyclerview with items
      */
-    override fun showStuff(places : List<Place>) {
+    override fun showStuff(items : List<ItemList>) {
 
-        placeAdapter = PlaceAdapter( places, this, this)
-        rvPlaces.adapter = placeAdapter
+        itemsAdapter = ItemsAdapter( items, this, this)
+        rvPlaces.adapter = itemsAdapter
+    }
+
+
+    override fun getItems() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun readyToMergeItems() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     /**
@@ -96,8 +104,8 @@ class MainActivity : AppCompatActivity() , MainView{
     }
 
     private fun configVIew(){
-        if(places != null ){
-            if(places!!.isEmpty()){
+        if(items != null ){
+            if(items!!.isEmpty()){
                 arrow.visibility = View.VISIBLE
                 searchTxt.visibility = View.VISIBLE
                 arrow.setColorFilter(Color.WHITE)
@@ -117,8 +125,8 @@ class MainActivity : AppCompatActivity() , MainView{
     private fun listenSearch(){
 
         search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(city: String): Boolean {
-                mainPresenter.getCity(city)
+            override fun onQueryTextSubmit(query: String): Boolean {
+                mainPresenter.getUsers(query)
                 return true
             }
 

@@ -8,5 +8,5 @@ data class ItemList(val id: Long,
                     val login: String,
                     val name: String,
                     val avatar_url: String,
-                    val type: Boolean
+                    val isPerson: Boolean
 )

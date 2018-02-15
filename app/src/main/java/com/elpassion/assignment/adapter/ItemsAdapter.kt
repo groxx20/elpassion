@@ -8,14 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.elpassion.assignment.R
-import com.elpassion.assignment.model.Place
 import com.elpassion.assignment.ui.main.MainView
 
 /**
  * Created by pavel on 10/2/18.
  */
 
-class PlaceAdapter(private val placeList: List<Place>, private val context: Context, private val listener: MainView): RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {
+class ItemsAdapter(private val placeList: List<Place>, private val context: Context, private val listener: MainView): RecyclerView.Adapter<ItemsAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         holder?.txtName?.text = placeList[position].name
