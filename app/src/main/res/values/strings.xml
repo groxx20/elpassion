@@ -1,11 +1,10 @@
 <resources>
     <string name="app_name">El Passion</string>
 
-    <string name="population">Population:</string>
 
-    <string name="search">Search any place</string>
+    <string name="search">Search any GitHub User or Repository</string>
 
-    <string name="cannot">Can not find the place</string>
+    <string name="cannot">Can not find something</string>
 
 
 

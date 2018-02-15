@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.elpassion.assignment.R
 import com.elpassion.assignment.model.ItemList
@@ -18,18 +19,22 @@ import com.elpassion.assignment.ui.main.MainView
 class ItemsAdapter(private val itemsList: List<ItemList>, private val context: Context, private val listener: MainView): RecyclerView.Adapter<ItemsAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        /*holder?.txtName?.text = placeList[position].name
 
-        val population = context.resources.getString(R.string.population) + " " + placeList[position].population.toString()
-        holder?.txtCountry?.text = population
-        holder?.txtNational?.text = placeList[position].countryCode
+        holder?.card?.setOnClickListener{ listener.goNext(itemsList[position].name) }
 
-        holder?.card?.setOnClickListener{ listener.goNext(placeList[position].name) } */
+        if(itemsList[position].isPerson){
+            holder?.txtName?.text = itemsList[position].login
+            holder?.imgItem?.setImageDrawable(context.resources.getDrawable(R.drawable.user_icon))
+        }
+        else{
+            holder?.txtName?.text = itemsList[position].name
+            holder?.imgItem?.setImageDrawable(context.resources.getDrawable(R.drawable.folder_icon))
+        }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent?.context).inflate(R.layout.place_layout, parent, false)
+        val v = LayoutInflater.from(parent?.context).inflate(R.layout.item_layout, parent, false)
         return ViewHolder(v)
     }
 
@@ -39,9 +44,8 @@ class ItemsAdapter(private val itemsList: List<ItemList>, private val context: C
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val txtName = itemView.findViewById<TextView>(R.id.name)!!
-        val txtCountry = itemView.findViewById<TextView>(R.id.population)!!
-        val txtNational = itemView.findViewById<TextView>(R.id.national)!!
         val card = itemView.findViewById<CardView>(R.id.card)!!
+        val imgItem = itemView.findViewById<ImageView>(R.id.imgItem)
 
     }
 
