@@ -26,9 +26,18 @@ interface IGeneralService {
         fun onFailurePerson(networkError: NetworkError)
     }
 
+    interface OnGetPersonStarsListener {
+        fun onSuccessPersonStars(repos: ResponseDtoRepos<Repository>)
+        fun onFailurePersonStars(networkError: NetworkError)
+    }
+
     fun getUsers( query:String,listener: OnGetUsersListener)
 
     fun getRepos( query:String,listener: OnGetReposListener)
+
+    fun getSpecificUser(name:String,listener: OnGetPersonListener)
+
+    fun getStarsOfUser(name: String, listener: OnGetPersonStarsListener)
 
     fun cancelNetworkRequest()
 

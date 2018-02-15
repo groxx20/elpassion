@@ -17,18 +17,23 @@ class DetailPresenterImpl(private val iGeneralService: IGeneralService,private v
     /**
      *  Request stations of searched place
      */
-    override fun obtainData(south: Double, north:Double , east: Double, west: Double) {
+
+
+    override fun obtainUser() {
         detailView.showLoading()
-        //iGeneralService.getInfo(south,north,east,west, this)
+    }
+
+    override fun obtainStars() {
+
     }
 
 
     override fun onSuccessPerson(repos: ResponseDtoRepos<Repository>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun onFailurePerson(networkError: NetworkError) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
 

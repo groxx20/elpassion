@@ -89,6 +89,31 @@ class GeneralService : IGeneralService {
 
     }
 
+    /**
+     *  Get stations of searched place
+     */
+    override fun getRepos(query: String, listener: IGeneralService.OnGetReposListener){
+
+        subscription = networkService.getRepos(query, Constants.startRow, Constants.maxRows)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .onErrorResumeNext { throwable -> Observable.error(throwable) }
+                .subscribe(object : Subscriber<ResponseDtoRepos<Repository>>() {
+                    override fun onCompleted() {
+
+                    }
+
+                    override fun onError(e: Throwable) {
+                        listener.onFailureRepos(NetworkError(e))
+                    }
+
+                    override fun onNext(repos: ResponseDtoRepos<Repository>) {
+                        listener.onSuccessRepos(repos)
+                    }
+                })
+
+    }
+
 
 
     override fun cancelNetworkRequest() {

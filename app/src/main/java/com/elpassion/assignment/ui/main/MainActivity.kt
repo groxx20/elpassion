@@ -60,9 +60,9 @@ class MainActivity : AppCompatActivity() , MainView{
         mainComponent.inject(this)
     }
 
-    override fun showLoading() { progressBar.visibility = View.VISIBLE }
+    override fun showLoading() { progressBarDetail.visibility = View.VISIBLE }
 
-    override fun hideLoading() { progressBar.visibility = View.INVISIBLE }
+    override fun hideLoading() { progressBarDetail.visibility = View.INVISIBLE }
 
     override fun onFailure(msg: String) {
         toastError(msg)

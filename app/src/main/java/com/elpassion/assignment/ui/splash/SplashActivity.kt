@@ -65,7 +65,7 @@ class SplashActivity : AppCompatActivity(), SplashView {
         countDownTimer = object : CountDownTimer(2500,1500){
             override fun onFinish() {
 
-                progressBar.visibility = View.VISIBLE
+                progressBarDetail.visibility = View.VISIBLE
                 splashPresenterImpl.startProcess()
 
             }
@@ -85,7 +85,7 @@ class SplashActivity : AppCompatActivity(), SplashView {
 
     override fun hideLoading() {
 
-        progressBar.visibility = View.INVISIBLE
+        progressBarDetail.visibility = View.INVISIBLE
     }
 
 }
