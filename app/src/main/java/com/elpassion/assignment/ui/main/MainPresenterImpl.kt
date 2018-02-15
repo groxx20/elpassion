@@ -1,9 +1,9 @@
 package com.elpassion.assignment.ui.main
 
+import android.util.Log
 import com.elpassion.assignment.dto.ResponseDtoRepos
 import com.elpassion.assignment.dto.ResponseDtoUser
 import com.elpassion.assignment.model.ItemList
-import com.elpassion.assignment.model.Place
 import com.elpassion.assignment.model.Repository
 import com.elpassion.assignment.model.User
 import com.elpassion.assignment.network.data.NetworkError
@@ -14,7 +14,6 @@ import com.elpassion.assignment.service.IGeneralService
  */
 
 class MainPresenterImpl(private val iGeneralService: IGeneralService, private val mainView: MainView) : IGeneralService.OnGetUsersListener, IGeneralService.OnGetReposListener, MainPresenter{
-
 
 
     private val TAG: String = "MainPresenter"
@@ -31,48 +30,52 @@ class MainPresenterImpl(private val iGeneralService: IGeneralService, private va
         iGeneralService.getRepos(repo, this)
     }
 
-
-    /*override fun onSuccess(user: ResponseDtoUser<Place>) {
-
-        Log.d(TAG, "success, got the place")
-        if(place.geonames != null && place.geonames!!.isNotEmpty()) {
-            convertType(place.geonames!![0])
-        }else{
-            mainView.onFailure("nothing found")
-        }
-        mainView.hideLoading()
-
-
-    }
-
-    override fun onFailure(networkError: NetworkError) {
-        Log.d(TAG, "failure, something went wrong")
-        mainView.onFailure(networkError.appErrorMessage)
-        mainView.hideLoading()
-    } */
-
     override fun onSuccessUsers(users: ResponseDtoUser<User>) {
 
+        Log.d(TAG, "got users succesfully")
+        convertUsersToList(users.items!!)
     }
 
     override fun onFailureUsers(networkError: NetworkError) {
 
+        Log.d(TAG, "failed retrieving users")
+        mainView.onFailure(networkError.appErrorMessage)
+        mainView.hideLoading()
     }
 
     override fun onSuccessRepos(repos: ResponseDtoRepos<Repository>) {
 
+        Log.d(TAG, "got users succesfully")
+        convertReposToList(repos.items!!)
     }
 
     override fun onFailureRepos(networkError: NetworkError) {
 
+        Log.d(TAG, "failed retrieving repos")
+        mainView.onFailure(networkError.appErrorMessage)
+        mainView.hideLoading()
     }
 
 
 
-    private fun convertType(place: Place){
+    override fun convertUsersToList(users: List<User>){
 
+        for (user: User in users){
 
-        mainView.goNext(place.name)
+            val itemListU = ItemList(user.id,user.login, "", user.avatar_url, true)
+            items.add(itemListU)
+        }
+
+    }
+
+    override fun convertReposToList(repos: List<Repository>) {
+
+        for (repo: Repository in repos){
+
+            val itemListR = ItemList(repo.id,repo.owner.login, repo.name, repo.owner.avatar_url, false)
+            items.add(itemListR)
+        }
+
 
     }
 

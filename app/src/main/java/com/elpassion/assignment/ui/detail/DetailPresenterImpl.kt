@@ -2,7 +2,6 @@ package com.elpassion.assignment.ui.detail
 
 import android.util.Log
 import com.elpassion.assignment.dto.ResponseDtoWeather
-import com.elpassion.assignment.model.Weather
 import com.elpassion.assignment.network.data.NetworkError
 import com.elpassion.assignment.service.IGeneralService
 

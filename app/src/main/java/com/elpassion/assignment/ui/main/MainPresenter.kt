@@ -13,4 +13,8 @@ interface MainPresenter {
     fun getRepos(repo:String)
 
     fun mergeLists(users: List<User>, repos: List<Repository>)
+
+    fun convertUsersToList ( users: List<User>)
+
+    fun convertReposToList ( repos: List<Repository>)
 }
