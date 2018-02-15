@@ -19,11 +19,12 @@
         android:layout_height="70dp">
 
         <ImageView
-            android:id="@+id/image"
+            android:id="@+id/imgItem"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
             android:layout_margin="10dp"
+            android:padding="5dp"
             android:scaleType="centerCrop"
             android:src="@drawable/logo" />
 
@@ -32,41 +33,18 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/image"
+            android:layout_toRightOf="@+id/imgItem"
+            android:layout_centerVertical="true"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="1"
             android:textColor="@color/text_color"
             android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/population"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/name"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/image"
-            android:ellipsize="end"
-            android:maxLines="3"
-            android:textColor="@color/material_grey_dark"
-            android:textSize="14sp" />
 
 
-        <TextView
-            android:id="@+id/national"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:textColor="@color/material_grey_dark"
-            android:textSize="12sp" />
 
 
     </RelativeLayout>

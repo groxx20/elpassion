@@ -44,7 +44,7 @@ class GeneralService : IGeneralService {
      */
     override fun getUsers(query:String,listener: IGeneralService.OnGetUsersListener){
 
-        subscription = networkService.getUsers(query, Constants.maxRows, Constants.startRow)
+        subscription = networkService.getUsers(query, Constants.startRow, Constants.maxRows)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .onErrorResumeNext { throwable -> Observable.error(throwable) }
@@ -69,7 +69,7 @@ class GeneralService : IGeneralService {
      */
     override fun getRepos(query: String, listener: IGeneralService.OnGetReposListener){
 
-        subscription = networkService.getRepos(query, Constants.maxRows, Constants.startRow)
+        subscription = networkService.getRepos(query, Constants.startRow, Constants.maxRows)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .onErrorResumeNext { throwable -> Observable.error(throwable) }
