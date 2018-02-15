@@ -29,6 +29,9 @@ class GeneralService : IGeneralService {
 
     private var subscription: Subscription? = null
 
+    /**
+     *  Inject Dependencies
+     */
     init {
         DaggerNetworkComponent.builder()
                 .networkModule(NetworkModule())
@@ -42,7 +45,7 @@ class GeneralService : IGeneralService {
 
 
     /**
-     *  Get searched place
+     *  Get Users
      */
     override fun getUsers(query:String,page:Int,listener: IGeneralService.OnGetUsersListener){
 
@@ -67,7 +70,7 @@ class GeneralService : IGeneralService {
     }
 
     /**
-     *  Get stations of searched place
+     *  Get Repos
      */
     override fun getRepos(query: String,page: Int,  listener: IGeneralService.OnGetReposListener){
 
@@ -92,7 +95,7 @@ class GeneralService : IGeneralService {
     }
 
     /**
-     *  Get stations of searched place
+     *  Get specific User
      */
     override fun getSpecificUser(name: String, listener: IGeneralService.OnGetPersonListener){
 
@@ -116,6 +119,9 @@ class GeneralService : IGeneralService {
 
     }
 
+    /**
+     *  Get stars of Specific User
+     */
     override fun getStarsOfUser(name: String, listener: IGeneralService.OnGetPersonStarsListener){
 
         subscription = networkService.getSpecificPersonStars(name)

@@ -33,14 +33,9 @@ class MainActivity : AppCompatActivity(), MainView {
     lateinit var mainPresenter: MainPresenterImpl
 
     private var itemsAdapter: ItemsAdapter? = null
-
     private var items: ArrayList<ItemList> = ArrayList()
-
     private var query: String = ""
-
     private var page = 0
-
-
     private var layoutManager: LinearLayoutManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

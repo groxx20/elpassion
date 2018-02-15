@@ -17,11 +17,17 @@ class DetailPresenterImpl(private val iGeneralService: IGeneralService,private v
     private val TAG: String = "DetailPresenter"
 
 
+    /**
+     *  Request of User Information
+     */
     override fun obtainUser(name: String) {
         detailView.showLoading()
         iGeneralService.getSpecificUser(name,this)
     }
 
+    /**
+     *  Obtain all stars of projects
+     */
     override fun obtainStars(name: String) {
 
         detailView.showLoading()

@@ -12,22 +12,13 @@ import com.elpassion.assignment.utils.loadImg
 import com.elpassion.assignment.utils.toastError
 import kotlinx.android.synthetic.main.activity_detail.*
 import javax.inject.Inject
-import com.elpassion.assignment.service.GeneralService
-import android.media.MediaCodec.MetricsConstants.MODE
-import android.content.Intent
-import android.support.v7.widget.RecyclerView
-import com.elpassion.assignment.R.id.rvItems
-
-
 
 
 @Suppress("DEPRECATION")
 class DetailActivity : AppCompatActivity(), DetailView {
 
 
-
     private lateinit var detailComponent: DetailComponent
-
 
     @Inject
     lateinit var detailPresenter: DetailPresenterImpl
@@ -59,6 +50,9 @@ class DetailActivity : AppCompatActivity(), DetailView {
         detailComponent.inject(this)
     }
 
+    /**
+     *  On clicks methods
+     */
     private fun clicks(){
         exitImg.setOnClickListener {
             finish()
@@ -67,14 +61,19 @@ class DetailActivity : AppCompatActivity(), DetailView {
     }
 
 
-    override fun requestStars() {
-        detailPresenter.obtainStars(intent.getStringExtra("name"))
-    }
+    /**
+     *  Request count of Stars
+     */
+    override fun requestStars() { detailPresenter.obtainStars(intent.getStringExtra("name")) }
 
-    override fun drawStars(stars: Int) {
-        starsTxt.text = stars.toString()
-    }
+    /**
+     *  Fill starsTxt
+     */
+    override fun drawStars(stars: Int) { starsTxt.text = stars.toString() }
 
+    /**
+     *  Fill fields with obtained information
+     */
     override fun drawInfo(url: String, followers: Int) {
 
         avatarImg.loadImg(url)

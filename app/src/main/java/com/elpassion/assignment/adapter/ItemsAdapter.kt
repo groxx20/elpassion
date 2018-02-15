@@ -12,6 +12,7 @@ import com.elpassion.assignment.R
 import com.elpassion.assignment.model.ItemList
 import com.elpassion.assignment.ui.main.MainView
 
+@Suppress("DEPRECATION")
 /**
  * Created by pavel on 10/2/18.
  */
