@@ -12,6 +12,13 @@ import com.elpassion.assignment.utils.loadImg
 import com.elpassion.assignment.utils.toastError
 import kotlinx.android.synthetic.main.activity_detail.*
 import javax.inject.Inject
+import com.elpassion.assignment.service.GeneralService
+import android.media.MediaCodec.MetricsConstants.MODE
+import android.content.Intent
+import android.support.v7.widget.RecyclerView
+import com.elpassion.assignment.R.id.rvItems
+
+
 
 
 @Suppress("DEPRECATION")
@@ -58,6 +65,7 @@ class DetailActivity : AppCompatActivity(), DetailView {
             overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out)
         }
     }
+
 
     override fun requestStars() {
         detailPresenter.obtainStars(intent.getStringExtra("name"))

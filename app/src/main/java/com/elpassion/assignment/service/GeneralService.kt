@@ -44,9 +44,9 @@ class GeneralService : IGeneralService {
     /**
      *  Get searched place
      */
-    override fun getUsers(query:String,listener: IGeneralService.OnGetUsersListener){
+    override fun getUsers(query:String,page:Int,listener: IGeneralService.OnGetUsersListener){
 
-        subscription = networkService.getUsers(query, Constants.startRow, Constants.maxRows)
+        subscription = networkService.getUsers(query, page, Constants.maxRows)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .onErrorResumeNext { throwable -> Observable.error(throwable) }
@@ -69,9 +69,9 @@ class GeneralService : IGeneralService {
     /**
      *  Get stations of searched place
      */
-    override fun getRepos(query: String, listener: IGeneralService.OnGetReposListener){
+    override fun getRepos(query: String,page: Int,  listener: IGeneralService.OnGetReposListener){
 
-        subscription = networkService.getRepos(query, Constants.startRow, Constants.maxRows)
+        subscription = networkService.getRepos(query, page, Constants.maxRows)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .onErrorResumeNext { throwable -> Observable.error(throwable) }
