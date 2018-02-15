@@ -34,22 +34,28 @@ class DetailPresenterImpl(private val iGeneralService: IGeneralService,private v
         Log.d(TAG,"got the user successfully")
         detailView.hideLoading()
         detailView.requestStars()
+        detailView.drawInfo(person.avatar_url, person.followers)
     }
 
     override fun onFailurePerson(networkError: NetworkError) {
 
         Log.d(TAG,"failed retrieving the user")
         detailView.hideLoading()
+        detailView.onFailure(networkError.appErrorMessage)
     }
 
-    override fun onSuccessPersonStars(repos: List<Star>) {
+    override fun onSuccessPersonStars(stars: List<Star>) {
         Log.d(TAG,"got user stars successfully")
         detailView.hideLoading()
+        val count = stars.sumBy { it.stargazers_count }
+        detailView.drawStars(count)
     }
 
     override fun onFailurePersonStars(networkError: NetworkError) {
 
         Log.d(TAG,"failed retrieving stars of the user")
         detailView.hideLoading()
+        detailView.onFailure(networkError.appErrorMessage)
+
     }
 }
