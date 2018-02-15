@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() , MainView{
     override fun goNext(name:String) {
 
         hideKeyboard()
-        goToActivity<DetailActivity> { putExtra("user", name) }
+        goToActivity<DetailActivity> { putExtra("name", name) }
     }
 
     /**

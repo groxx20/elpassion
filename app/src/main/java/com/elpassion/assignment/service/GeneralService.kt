@@ -5,7 +5,9 @@ import com.elpassion.assignment.di.components.DaggerNetworkComponent
 import com.elpassion.assignment.di.modules.NetworkModule
 import com.elpassion.assignment.dto.ResponseDtoRepos
 import com.elpassion.assignment.dto.ResponseDtoUser
+import com.elpassion.assignment.model.Person
 import com.elpassion.assignment.model.Repository
+import com.elpassion.assignment.model.Star
 import com.elpassion.assignment.model.User
 import com.elpassion.assignment.network.NetworkService
 import com.elpassion.assignment.network.data.NetworkError
@@ -92,23 +94,45 @@ class GeneralService : IGeneralService {
     /**
      *  Get stations of searched place
      */
-    override fun getRepos(query: String, listener: IGeneralService.OnGetReposListener){
+    override fun getSpecificUser(name: String, listener: IGeneralService.OnGetPersonListener){
 
-        subscription = networkService.getRepos(query, Constants.startRow, Constants.maxRows)
+        subscription = networkService.getSpecificPerson(name)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .onErrorResumeNext { throwable -> Observable.error(throwable) }
-                .subscribe(object : Subscriber<ResponseDtoRepos<Repository>>() {
+                .subscribe(object : Subscriber<Person>() {
                     override fun onCompleted() {
 
                     }
 
                     override fun onError(e: Throwable) {
-                        listener.onFailureRepos(NetworkError(e))
+                        listener.onFailurePerson(NetworkError(e))
                     }
 
-                    override fun onNext(repos: ResponseDtoRepos<Repository>) {
-                        listener.onSuccessRepos(repos)
+                    override fun onNext(person: Person) {
+                        listener.onSuccessPerson(person)
+                    }
+                })
+
+    }
+
+    override fun getStarsOfUser(name: String, listener: IGeneralService.OnGetPersonStarsListener){
+
+        subscription = networkService.getSpecificPersonStars(name)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .onErrorResumeNext { throwable -> Observable.error(throwable) }
+                .subscribe(object : Subscriber<List<Star>>() {
+                    override fun onCompleted() {
+
+                    }
+
+                    override fun onError(e: Throwable) {
+                        listener.onFailurePersonStars(NetworkError(e))
+                    }
+
+                    override fun onNext(stars: List<Star>) {
+                        listener.onSuccessPersonStars(stars)
                     }
                 })
 

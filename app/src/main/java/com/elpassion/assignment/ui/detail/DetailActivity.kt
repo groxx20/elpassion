@@ -21,13 +21,15 @@ class DetailActivity : AppCompatActivity(), DetailView {
 
 
     @Inject
-    lateinit var detailPresenterImpl: DetailPresenterImpl
+    lateinit var detailPresenter: DetailPresenterImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
         injectDependecies()
+
+        detailPresenter.obtainUser(intent.getStringExtra("name"))
 
     }
 
@@ -42,6 +44,10 @@ class DetailActivity : AppCompatActivity(), DetailView {
                 .appComponent(appComponent)
                 .build()
         detailComponent.inject(this)
+    }
+
+    override fun requestStars() {
+        detailPresenter.obtainStars(intent.getStringExtra("name"))
     }
 
 

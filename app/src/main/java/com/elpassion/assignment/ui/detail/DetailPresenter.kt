@@ -7,8 +7,8 @@ package com.elpassion.assignment.ui.detail
 interface DetailPresenter {
 
 
-    fun obtainUser()
+    fun obtainUser(name: String)
 
-    fun obtainStars()
+    fun obtainStars(name: String)
 
 }
