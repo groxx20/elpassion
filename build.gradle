@@ -67,6 +67,7 @@ ext {
     espressoVersion = '3.0.1'
     uiautomatorVersion = '2.1.2'
     espressoContribVersion = '2.0'
+    mockitoVersion = '2.6.8'
 
     // vars
     cacheTime = "432000"

@@ -21,12 +21,18 @@ class MainPresenterImpl(private val iGeneralService: IGeneralService, private va
     private val items: ArrayList<ItemList> = ArrayList()
 
 
+    /**
+     *  Get users from Endpoint
+     */
     override fun getUsers(page: Int, user: String) {
 
         mainView.showLoading()
         iGeneralService.getUsers(user,page, this)
     }
 
+    /**
+     *  Get repos from Endpoint
+     */
     override fun getRepos(page: Int, repo: String) {
 
         mainView.showLoading()
@@ -63,6 +69,9 @@ class MainPresenterImpl(private val iGeneralService: IGeneralService, private va
 
 
 
+    /**
+     *  Convert User to List Item
+     */
     override fun convertUsersToList(users: List<User>){
 
         users.mapTo(items) { ItemList(it.id, it.login, "", it.avatar_url, true) }
@@ -71,6 +80,9 @@ class MainPresenterImpl(private val iGeneralService: IGeneralService, private va
 
     }
 
+    /**
+     *  Convert Repo to List Item
+     */
     override fun convertReposToList(repos: List<Repository>) {
 
         repos.mapTo(items) { ItemList(it.id, it.owner.login, it.name, it.owner.avatar_url, false) }
@@ -78,6 +90,9 @@ class MainPresenterImpl(private val iGeneralService: IGeneralService, private va
 
     }
 
+    /**
+     *  Sort List by ID
+     */
     override fun sortList(itemList: List<ItemList>) {
 
         val sortedList = itemList.sortedWith(compareBy({ it.id }))

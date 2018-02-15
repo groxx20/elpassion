@@ -41,7 +41,9 @@ class SplashActivity : AppCompatActivity(), SplashView {
     }
 
 
-
+    /**
+     *  Inject Dependencies
+     */
     private fun injectDependencies(){
 
         val appComponent = PassionApp.appComponent
@@ -53,6 +55,9 @@ class SplashActivity : AppCompatActivity(), SplashView {
         splashComponent.inject(this)
     }
 
+    /**
+     *  Show splash animation
+     */
     private fun showAnimation(){
 
         animation = AnimationUtils.loadAnimation(this, R.anim.start_animation)
@@ -77,6 +82,9 @@ class SplashActivity : AppCompatActivity(), SplashView {
     }
 
 
+    /**
+     *  Move forward
+     */
     override fun goNext() {
 
         goToActivity<MainActivity>()

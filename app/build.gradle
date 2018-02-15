@@ -76,6 +76,7 @@ dependencies {
     implementation "com.artemzin.rxjava:proguard-rules:$rootProject.proguardRulesVersion"
 
 
+    testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
 
 
 
