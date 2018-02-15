@@ -81,6 +81,7 @@ class SplashActivity : AppCompatActivity(), SplashView {
 
         goToActivity<MainActivity>()
         finish()
+        overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out)
     }
 
     override fun hideLoading() {

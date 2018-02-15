@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity() , MainView{
 
         hideKeyboard()
         goToActivity<DetailActivity> { putExtra("name", name) }
+        overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out)
     }
 
     /**

@@ -8,6 +8,7 @@ import com.elpassion.assignment.R
 import com.elpassion.assignment.ui.main.di.components.DaggerDetailComponent
 import com.elpassion.assignment.ui.main.di.components.DetailComponent
 import com.elpassion.assignment.ui.main.di.modules.DetailActivityModule
+import com.elpassion.assignment.utils.loadImg
 import com.elpassion.assignment.utils.toastError
 import kotlinx.android.synthetic.main.activity_detail.*
 import javax.inject.Inject
@@ -15,6 +16,7 @@ import javax.inject.Inject
 
 @Suppress("DEPRECATION")
 class DetailActivity : AppCompatActivity(), DetailView {
+
 
 
     private lateinit var detailComponent: DetailComponent
@@ -29,7 +31,11 @@ class DetailActivity : AppCompatActivity(), DetailView {
 
         injectDependecies()
 
+        clicks()
+
         detailPresenter.obtainUser(intent.getStringExtra("name"))
+
+
 
     }
 
@@ -46,8 +52,26 @@ class DetailActivity : AppCompatActivity(), DetailView {
         detailComponent.inject(this)
     }
 
+    private fun clicks(){
+        exitImg.setOnClickListener {
+            finish()
+            overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out)
+        }
+    }
+
     override fun requestStars() {
         detailPresenter.obtainStars(intent.getStringExtra("name"))
+    }
+
+    override fun drawStars(stars: Int) {
+        starsTxt.text = stars.toString()
+    }
+
+    override fun drawInfo(url: String, followers: Int) {
+
+        avatarImg.loadImg(url)
+        followersTxt.text = followers.toString()
+        nameTxt.text = intent.getStringExtra("name")
     }
 
 

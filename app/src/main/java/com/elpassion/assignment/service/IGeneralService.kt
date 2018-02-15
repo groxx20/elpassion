@@ -29,7 +29,7 @@ interface IGeneralService {
     }
 
     interface OnGetPersonStarsListener {
-        fun onSuccessPersonStars(repos: List<Star>)
+        fun onSuccessPersonStars(stars: List<Star>)
         fun onFailurePersonStars(networkError: NetworkError)
     }
 

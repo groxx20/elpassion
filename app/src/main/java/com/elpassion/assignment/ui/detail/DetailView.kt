@@ -14,4 +14,8 @@ interface DetailView {
 
     fun requestStars()
 
+    fun drawStars(stars:Int)
+
+    fun drawInfo(url:String, followers:Int)
+
 }

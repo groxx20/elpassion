@@ -5,5 +5,5 @@ package com.elpassion.assignment.model
  */
 
 
-data class Star(val stargazers_count: String
+data class Star(val stargazers_count: Int
 )
