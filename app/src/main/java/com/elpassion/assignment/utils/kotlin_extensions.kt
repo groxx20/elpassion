@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.shashank.sony.fancytoastlib.FancyToast
 import com.elpassion.assignment.R
+import com.elpassion.assignment.adapter.ItemsAdapter
 import com.squareup.picasso.Picasso
 
 
@@ -49,11 +50,11 @@ fun ImageView.loadImg(imageUrl: String) {
 }
 
 // Extension for Picasso Fetch
-fun ImageView.fetchImg(imageUrl: String) {
+fun Activity.fetchImg(imageUrl: String) {
     if (TextUtils.isEmpty(imageUrl)) {
-        Picasso.with(context).load(R.mipmap.ic_launcher).fetch()
+        // nothing
     } else {
-        Picasso.with(context).load(imageUrl).fetch()
+        Picasso.with(this).load(imageUrl).fetch()
     }
 }
 
