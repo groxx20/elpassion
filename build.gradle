@@ -56,7 +56,8 @@ ext {
     javaxAnnotationVersion = '1.0'
     glassfishVersion = '10.0-b28'
     proguardRulesVersion = '1.1.0.0'
-    dexterVersion = '4.2.0'
+    circleImageVersion = '2.1.0'
+    picassoVersion = '2.5.2'
     fancyVersion = '0.1.3'
 
     googleMapsVersion = '11.8.0'

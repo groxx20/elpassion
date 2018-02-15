@@ -27,5 +27,7 @@ interface NetworkService {
             @Query("page") page: Int,
             @Query("per_page") per_page: Int): Observable<ResponseDtoRepos<Repository>>
 
+    @GET()
+
 }
 

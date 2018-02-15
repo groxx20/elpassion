@@ -4,13 +4,16 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.support.annotation.LayoutRes
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.Toast
 import com.shashank.sony.fancytoastlib.FancyToast
 import com.elpassion.assignment.R
+import com.squareup.picasso.Picasso
 
 
 /**
@@ -36,9 +39,22 @@ fun Activity.toastError(message: String, duration: Int = Toast.LENGTH_SHORT) = F
 
 
 
-// Extension for inflate in Adapter or Fragment
-fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false) : View {
-    return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
+// Extension for Picasso Charge
+fun ImageView.loadImg(imageUrl: String) {
+    if (TextUtils.isEmpty(imageUrl)) {
+        Picasso.with(context).load(R.mipmap.ic_launcher).into(this)
+    } else {
+        Picasso.with(context).load(imageUrl).into(this)
+    }
+}
+
+// Extension for Picasso Fetch
+fun ImageView.fetchImg(imageUrl: String) {
+    if (TextUtils.isEmpty(imageUrl)) {
+        Picasso.with(context).load(R.mipmap.ic_launcher).fetch()
+    } else {
+        Picasso.with(context).load(imageUrl).fetch()
+    }
 }
 
 fun Activity.hideKeyboard() {

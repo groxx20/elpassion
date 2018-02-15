@@ -13,6 +13,8 @@ class Constants{
 
         const val API_SEARCH_USERS = "search/users"
         const val API_SEARCH_REPOS = "search/repositories"
+        const val API_SPECIFIC_USER = "users/"
+        const val API_REPOS = "/repos"
 
 
     }

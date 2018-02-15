@@ -53,6 +53,10 @@ dependencies {
     implementation "com.google.dagger:dagger:$rootProject.dagger2Version"
     kapt "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
 
+
+    implementation "de.hdodenhof:circleimageview:$rootProject.circleImageVersion"
+    implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
+
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava:$rootProject.retrofitVersion"
@@ -72,10 +76,7 @@ dependencies {
     implementation "com.artemzin.rxjava:proguard-rules:$rootProject.proguardRulesVersion"
 
 
-    implementation "com.karumi:dexter:$rootProject.dexterVersion", {
-        exclude group: 'com.android.support', module: 'appcompat-v7'
-        exclude group: 'com.android.support', module: 'design'
-    }
+
 
 
 }

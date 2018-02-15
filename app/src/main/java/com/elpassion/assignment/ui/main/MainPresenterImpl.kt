@@ -45,6 +45,7 @@ class MainPresenterImpl(private val iGeneralService: IGeneralService, private va
         Log.d(TAG, "failed retrieving users")
         mainView.onFailure(networkError.appErrorMessage)
         mainView.hideLoading()
+        iGeneralService.cancelNetworkRequest()
     }
 
     override fun onSuccessRepos(repos: ResponseDtoRepos<Repository>) {
@@ -59,6 +60,7 @@ class MainPresenterImpl(private val iGeneralService: IGeneralService, private va
         Log.d(TAG, "failed retrieving repos")
         mainView.onFailure(networkError.appErrorMessage)
         mainView.hideLoading()
+        iGeneralService.cancelNetworkRequest()
     }
 
 
@@ -82,6 +84,7 @@ class MainPresenterImpl(private val iGeneralService: IGeneralService, private va
 
         val sortedList = itemList.sortedWith(compareBy({ it.id }))
         mainView.showStuff(sortedList)
+        iGeneralService.cancelNetworkRequest()
     }
 
 

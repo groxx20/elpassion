@@ -7,5 +7,8 @@ package com.elpassion.assignment.ui.detail
 interface DetailPresenter {
 
 
-    fun obtainData(south: Double, north:Double , east: Double, west: Double)
+    fun obtainUser()
+
+    fun obtainStars()
+
 }

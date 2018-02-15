@@ -48,12 +48,12 @@ class DetailActivity : AppCompatActivity(), DetailView {
 
     override fun hideLoading() {
 
-        progressBarWeather.visibility = View.INVISIBLE
+        progressBarDetail.visibility = View.INVISIBLE
     }
 
     override fun showLoading() {
 
-        progressBarWeather.visibility = View.VISIBLE
+        progressBarDetail.visibility = View.VISIBLE
     }
 
     override fun onFailure(msg: String) {
