@@ -12,4 +12,6 @@ interface DetailView {
 
     fun onFailure(msg:String)
 
+    fun requestStars()
+
 }

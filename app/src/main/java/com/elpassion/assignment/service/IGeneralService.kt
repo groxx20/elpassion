@@ -2,7 +2,9 @@ package com.elpassion.assignment.service
 
 import com.elpassion.assignment.dto.ResponseDtoRepos
 import com.elpassion.assignment.dto.ResponseDtoUser
+import com.elpassion.assignment.model.Person
 import com.elpassion.assignment.model.Repository
+import com.elpassion.assignment.model.Star
 import com.elpassion.assignment.model.User
 import com.elpassion.assignment.network.data.NetworkError
 
@@ -22,12 +24,12 @@ interface IGeneralService {
     }
 
     interface OnGetPersonListener {
-        fun onSuccessPerson(repos: ResponseDtoRepos<Repository>)
+        fun onSuccessPerson(person: Person)
         fun onFailurePerson(networkError: NetworkError)
     }
 
     interface OnGetPersonStarsListener {
-        fun onSuccessPersonStars(repos: ResponseDtoRepos<Repository>)
+        fun onSuccessPersonStars(repos: List<Star>)
         fun onFailurePersonStars(networkError: NetworkError)
     }
 

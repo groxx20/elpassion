@@ -20,16 +20,18 @@ class ItemsAdapter(private val itemsList: List<ItemList>, private val context: C
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
 
-        holder?.card?.setOnClickListener{ listener.goNext(itemsList[position].name) }
+
 
         if(itemsList[position].isPerson){
             holder?.txtName?.text = itemsList[position].login
             holder?.imgItem?.setImageDrawable(context.resources.getDrawable(R.drawable.user_icon))
+            holder?.card?.setOnClickListener{ listener.goNext(itemsList[position].login) }
         }
         else{
             holder?.txtName?.text = itemsList[position].name
             holder?.imgItem?.setImageDrawable(context.resources.getDrawable(R.drawable.folder_icon))
         }
+
 
     }
 
