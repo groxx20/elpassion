@@ -21,4 +21,6 @@ interface MainView {
 
     fun showStuff(items : List<ItemList>)
 
+    fun fetchImages(items: List<ItemList>)
+
 }

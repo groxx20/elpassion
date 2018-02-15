@@ -96,6 +96,7 @@ class MainPresenterImpl(private val iGeneralService: IGeneralService, private va
     override fun sortList(itemList: List<ItemList>) {
 
         val sortedList = itemList.sortedWith(compareBy({ it.id }))
+        mainView.fetchImages(sortedList)
         mainView.showStuff(sortedList)
         iGeneralService.cancelNetworkRequest()
     }

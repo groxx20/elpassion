@@ -34,6 +34,8 @@ class ItemsAdapter(private val itemsList: List<ItemList>, private val context: C
         }
 
 
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {

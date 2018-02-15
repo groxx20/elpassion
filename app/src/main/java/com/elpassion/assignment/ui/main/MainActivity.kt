@@ -17,6 +17,7 @@ import com.elpassion.assignment.ui.detail.DetailActivity
 import com.elpassion.assignment.ui.main.di.components.DaggerMainComponent
 import com.elpassion.assignment.ui.main.di.components.MainComponent
 import com.elpassion.assignment.ui.main.di.modules.MainModule
+import com.elpassion.assignment.utils.fetchImg
 import com.elpassion.assignment.utils.goToActivity
 import com.elpassion.assignment.utils.hideKeyboard
 import com.elpassion.assignment.utils.toastError
@@ -25,6 +26,7 @@ import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity(), MainView {
+
 
 
     private lateinit var mainComponent: MainComponent
@@ -118,6 +120,16 @@ class MainActivity : AppCompatActivity(), MainView {
         rvItems.adapter = itemsAdapter
 
         setupListener()
+    }
+
+    /**
+     *  Fetch Images for Picasso
+     */
+    override fun fetchImages(items: List<ItemList>) {
+
+        for(item: ItemList in items){
+            fetchImg(item.avatar_url)
+        }
     }
 
 
