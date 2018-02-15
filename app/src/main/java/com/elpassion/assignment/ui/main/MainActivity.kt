@@ -31,15 +31,19 @@ class MainActivity : AppCompatActivity() , MainView{
     lateinit var mainPresenter: MainPresenterImpl
 
     private var itemsAdapter: ItemsAdapter? = null
-    private var items: List<ItemList>? = null
+
+    private var items: ArrayList<ItemList> = ArrayList()
+
+    private var query:String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         injectDependecies()
-        setupRecyclerView(rvPlaces)
+        setupRecyclerView(rvItems)
         listenSearch()
+        configVIew(items)
 
     }
 
@@ -67,10 +71,10 @@ class MainActivity : AppCompatActivity() , MainView{
     /**
      *  Move forward
      */
-    override fun goNext(user:String) {
+    override fun goNext(name:String) {
 
         hideKeyboard()
-        goToActivity<DetailActivity> { putExtra("user", user) }
+        goToActivity<DetailActivity> { putExtra("user", name) }
     }
 
     /**
@@ -78,17 +82,25 @@ class MainActivity : AppCompatActivity() , MainView{
      */
     override fun showStuff(items : List<ItemList>) {
 
+        configVIew(items)
         itemsAdapter = ItemsAdapter( items, this, this)
-        rvPlaces.adapter = itemsAdapter
+        rvItems.adapter = itemsAdapter
     }
 
 
-    override fun getItems() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getItemsUser() {
+        mainPresenter.getUsers(query)
     }
 
-    override fun readyToMergeItems() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getItemsRepos() {
+
+        mainPresenter.getRepos(query)
+    }
+
+
+    override fun readyToSortItems(items: List<ItemList>) {
+
+        mainPresenter.sortList(items)
     }
 
     /**
@@ -96,16 +108,16 @@ class MainActivity : AppCompatActivity() , MainView{
      */
     private fun setupRecyclerView(recyclerView: RecyclerView) {
 
-        rvPlaces.isNestedScrollingEnabled
+        rvItems.isNestedScrollingEnabled
 
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = layoutManager
 
     }
 
-    private fun configVIew(){
-        if(items != null ){
-            if(items!!.isEmpty()){
+    private fun configVIew(items: List<ItemList>){
+
+            if(items.isEmpty()){
                 arrow.visibility = View.VISIBLE
                 searchTxt.visibility = View.VISIBLE
                 arrow.setColorFilter(Color.WHITE)
@@ -114,9 +126,6 @@ class MainActivity : AppCompatActivity() , MainView{
                 searchTxt.visibility = View.INVISIBLE
                 arrow.setColorFilter(Color.WHITE)
             }
-
-        }
-
     }
 
     /**
@@ -125,22 +134,17 @@ class MainActivity : AppCompatActivity() , MainView{
     private fun listenSearch(){
 
         search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
+            override fun onQueryTextSubmit(querySearch: String): Boolean {
+                query = querySearch
                 mainPresenter.getUsers(query)
                 return true
             }
 
-            override fun onQueryTextChange(s: String): Boolean {
+            override fun onQueryTextChange(queryString: String): Boolean {
 
+                query = queryString
                 return true
             }
         })
-    }
-    
-
-
-    override fun onResume() {
-        super.onResume()
-        configVIew()
     }
 }

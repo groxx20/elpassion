@@ -18,14 +18,14 @@ interface NetworkService {
     @GET(Constants.API_SEARCH_USERS)
     fun getUsers(
             @Query("q") q: String,
-    @Query("maxRows") maxRows: Int,
-    @Query("startRow") startRow: Int): Observable<ResponseDtoUser<User>>
+    @Query("page") maxRows: Int,
+    @Query("per_page") startRow: Int): Observable<ResponseDtoUser<User>>
 
     @GET(Constants.API_SEARCH_REPOS)
     fun getRepos(
             @Query("q") q: String,
-            @Query("maxRows") maxRows: Int,
-            @Query("startRow") startRow: Int): Observable<ResponseDtoRepos<Repository>>
+            @Query("page") maxRows: Int,
+            @Query("per_page") startRow: Int): Observable<ResponseDtoRepos<Repository>>
 
 }
 

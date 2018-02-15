@@ -11,13 +11,15 @@ interface MainView {
 
     fun hideLoading()
 
-    fun getItems()
+    fun getItemsUser()
 
-    fun readyToMergeItems()
+    fun getItemsRepos()
+
+    fun readyToSortItems(items: List<ItemList>)
 
     fun onFailure(msg:String)
 
-    fun goNext(city:String)
+    fun goNext(name:String)
 
     fun showStuff(items : List<ItemList>)
 

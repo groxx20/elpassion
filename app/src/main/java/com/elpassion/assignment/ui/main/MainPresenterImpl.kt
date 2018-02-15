@@ -16,17 +16,20 @@ import com.elpassion.assignment.service.IGeneralService
 class MainPresenterImpl(private val iGeneralService: IGeneralService, private val mainView: MainView) : IGeneralService.OnGetUsersListener, IGeneralService.OnGetReposListener, MainPresenter{
 
 
+
     private val TAG: String = "MainPresenter"
     private val items: ArrayList<ItemList> = ArrayList()
 
 
     override fun getUsers(user: String) {
 
+        mainView.showLoading()
         iGeneralService.getUsers(user, this)
     }
 
     override fun getRepos(repo: String) {
 
+        mainView.showLoading()
         iGeneralService.getRepos(repo, this)
     }
 
@@ -34,6 +37,7 @@ class MainPresenterImpl(private val iGeneralService: IGeneralService, private va
 
         Log.d(TAG, "got users succesfully")
         convertUsersToList(users.items!!)
+        mainView.hideLoading()
     }
 
     override fun onFailureUsers(networkError: NetworkError) {
@@ -47,6 +51,7 @@ class MainPresenterImpl(private val iGeneralService: IGeneralService, private va
 
         Log.d(TAG, "got users succesfully")
         convertReposToList(repos.items!!)
+        mainView.hideLoading()
     }
 
     override fun onFailureRepos(networkError: NetworkError) {
@@ -60,30 +65,27 @@ class MainPresenterImpl(private val iGeneralService: IGeneralService, private va
 
     override fun convertUsersToList(users: List<User>){
 
-        for (user: User in users){
+        users.mapTo(items) { ItemList(it.id, it.login, "", it.avatar_url, true) }
 
-            val itemListU = ItemList(user.id,user.login, "", user.avatar_url, true)
-            items.add(itemListU)
-        }
+        mainView.getItemsRepos()
 
     }
 
     override fun convertReposToList(repos: List<Repository>) {
 
-        for (repo: Repository in repos){
+        repos.mapTo(items) { ItemList(it.id, it.owner.login, it.name, it.owner.avatar_url, false) }
+        mainView.readyToSortItems(items)
 
-            val itemListR = ItemList(repo.id,repo.owner.login, repo.name, repo.owner.avatar_url, false)
-            items.add(itemListR)
-        }
+    }
 
+    override fun sortList(itemList: List<ItemList>) {
 
+        val sortedList = itemList.sortedWith(compareBy({ it.id }))
+        mainView.showStuff(sortedList)
     }
 
 
 
-    override fun mergeLists(users: List<User>, repos: List<Repository>) {
-
-    }
 
 
 }
