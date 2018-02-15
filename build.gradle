@@ -69,5 +69,5 @@ ext {
 
     // vars
     cacheTime = "432000"
-    baseUrl = "\"http://api.geonames.org/\""
+    baseUrl = "\"https://api.github.com/\""
 }

@@ -1,14 +1,14 @@
 package com.elpassion.assignment.service
 
 import com.elpassion.assignment.PassionApp
-import com.elpassion.assignment.network.data.NetworkError
 import com.elpassion.assignment.di.components.DaggerNetworkComponent
 import com.elpassion.assignment.di.modules.NetworkModule
-import com.elpassion.assignment.dto.ResponseDto
-import com.elpassion.assignment.dto.ResponseDtoWeather
-import com.elpassion.assignment.model.Place
-import com.elpassion.assignment.model.Weather
+import com.elpassion.assignment.dto.ResponseDtoRepos
+import com.elpassion.assignment.dto.ResponseDtoUser
+import com.elpassion.assignment.model.Repository
+import com.elpassion.assignment.model.User
 import com.elpassion.assignment.network.NetworkService
+import com.elpassion.assignment.network.data.NetworkError
 import com.elpassion.assignment.utils.Constants
 import rx.Observable
 import rx.Subscriber
@@ -42,23 +42,23 @@ class GeneralService : IGeneralService {
     /**
      *  Get searched place
      */
-    override fun getPlaces(name:String,listener: IGeneralService.OnGetPlaceListener){
+    override fun getUsers(query:String,listener: IGeneralService.OnGetUsersListener){
 
-        subscription = networkService.getPlace(name, Constants.maxRows, Constants.startRow, Constants.lang, Constants.isNameRequired, Constants.style, Constants.username)
+        subscription = networkService.getUsers(query, Constants.maxRows, Constants.startRow)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .onErrorResumeNext { throwable -> Observable.error(throwable) }
-                .subscribe(object : Subscriber<ResponseDto<Place>>() {
+                .subscribe(object : Subscriber<ResponseDtoUser<User>>() {
                     override fun onCompleted() {
 
                     }
 
                     override fun onError(e: Throwable) {
-                        listener.onFailure(NetworkError(e))
+                        listener.onFailureUsers(NetworkError(e))
                     }
 
-                    override fun onNext(place: ResponseDto<Place>) {
-                        listener.onSuccess(place)
+                    override fun onNext(user: ResponseDtoUser<User>) {
+                        listener.onSuccessUsers(user)
                     }
                 })
 
@@ -67,23 +67,23 @@ class GeneralService : IGeneralService {
     /**
      *  Get stations of searched place
      */
-    override fun getInfo(south: Double, north:Double , east: Double, west: Double, listener: IGeneralService.OnGetInfoListener){
+    override fun getRepos(query: String, listener: IGeneralService.OnGetReposListener){
 
-        subscription = networkService.getInfo(north,south,east,west,Constants.username)
+        subscription = networkService.getRepos(query, Constants.maxRows, Constants.startRow)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .onErrorResumeNext { throwable -> Observable.error(throwable) }
-                .subscribe(object : Subscriber<ResponseDtoWeather<Weather>>() {
+                .subscribe(object : Subscriber<ResponseDtoRepos<Repository>>() {
                     override fun onCompleted() {
 
                     }
 
                     override fun onError(e: Throwable) {
-                        listener.onFailure(NetworkError(e))
+                        listener.onFailureRepos(NetworkError(e))
                     }
 
-                    override fun onNext(weather: ResponseDtoWeather<Weather>) {
-                        listener.onSuccess(weather)
+                    override fun onNext(repos: ResponseDtoRepos<Repository>) {
+                        listener.onSuccessRepos(repos)
                     }
                 })
 

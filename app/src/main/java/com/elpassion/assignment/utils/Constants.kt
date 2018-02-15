@@ -7,15 +7,14 @@ package com.elpassion.assignment.utils
 class Constants{
 
     companion object {
-        const val API_SEARCH  ="searchJSON"
-        const val maxRows = 20
-        const val startRow = 0
-        const val lang = "en"
-        const val isNameRequired = true
-        const val style = "FULL"
-        const val username = "ilgeonamessample"
-        const val API_WEATHER ="weatherJSON"
-        const val DB_NAME = "places-db"
+
+        const val maxRows = 10
+        const val startRow = 1
+
+        const val API_SEARCH_USERS = "search/users"
+        const val API_SEARCH_REPOS = "search/repositories"
+
+
     }
 
 

@@ -5,9 +5,8 @@ package com.elpassion.assignment.model
  */
 
 data class ItemList(val id: Long,
-                 val login:String,
-                 val avatar_url:String,
-                 val type:String,
-                 val lat: Double,
-                 val lng: Double
+                    val login: String,
+                    val name: String,
+                    val avatar_url: String,
+                    val type: Boolean
 )
