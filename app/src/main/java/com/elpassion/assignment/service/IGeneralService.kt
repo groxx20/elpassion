@@ -33,9 +33,9 @@ interface IGeneralService {
         fun onFailurePersonStars(networkError: NetworkError)
     }
 
-    fun getUsers( query:String,listener: OnGetUsersListener)
+    fun getUsers( query:String,page: Int,listener: OnGetUsersListener)
 
-    fun getRepos( query:String,listener: OnGetReposListener)
+    fun getRepos( query:String,page: Int,listener: OnGetReposListener)
 
     fun getSpecificUser(name:String,listener: OnGetPersonListener)
 

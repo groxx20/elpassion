@@ -21,16 +21,16 @@ class MainPresenterImpl(private val iGeneralService: IGeneralService, private va
     private val items: ArrayList<ItemList> = ArrayList()
 
 
-    override fun getUsers(user: String) {
+    override fun getUsers(page: Int, user: String) {
 
         mainView.showLoading()
-        iGeneralService.getUsers(user, this)
+        iGeneralService.getUsers(user,page, this)
     }
 
-    override fun getRepos(repo: String) {
+    override fun getRepos(page: Int, repo: String) {
 
         mainView.showLoading()
-        iGeneralService.getRepos(repo, this)
+        iGeneralService.getRepos(repo,page, this)
     }
 
     override fun onSuccessUsers(users: ResponseDtoUser<User>) {
@@ -43,7 +43,6 @@ class MainPresenterImpl(private val iGeneralService: IGeneralService, private va
     override fun onFailureUsers(networkError: NetworkError) {
 
         Log.d(TAG, "failed retrieving users")
-        mainView.onFailure(networkError.appErrorMessage)
         mainView.hideLoading()
         iGeneralService.cancelNetworkRequest()
     }
@@ -58,7 +57,6 @@ class MainPresenterImpl(private val iGeneralService: IGeneralService, private va
     override fun onFailureRepos(networkError: NetworkError) {
 
         Log.d(TAG, "failed retrieving repos")
-        mainView.onFailure(networkError.appErrorMessage)
         mainView.hideLoading()
         iGeneralService.cancelNetworkRequest()
     }

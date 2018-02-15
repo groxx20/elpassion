@@ -11,8 +11,6 @@ interface MainView {
 
     fun hideLoading()
 
-    fun getItemsUser()
-
     fun getItemsRepos()
 
     fun readyToSortItems(items: List<ItemList>)

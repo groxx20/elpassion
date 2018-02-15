@@ -9,9 +9,9 @@ import com.elpassion.assignment.model.User
  */
 interface MainPresenter {
 
-    fun getUsers(user:String)
+    fun getUsers(page: Int,user:String)
 
-    fun getRepos(repo:String)
+    fun getRepos(page: Int,repo:String)
 
     fun sortList(itemList: List<ItemList>)
 
