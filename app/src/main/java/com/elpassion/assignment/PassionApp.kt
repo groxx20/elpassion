@@ -6,6 +6,7 @@ import com.elpassion.assignment.di.components.AppComponent
 import com.elpassion.assignment.di.modules.AppModule
 import com.elpassion.assignment.di.components.DaggerAppComponent
 
+@Suppress("DEPRECATION")
 /**
  * Created by pavel on 22/1/18.
  */

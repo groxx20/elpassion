@@ -21,6 +21,11 @@ interface IGeneralService {
         fun onFailureRepos(networkError: NetworkError)
     }
 
+    interface OnGetPersonListener {
+        fun onSuccessPerson(repos: ResponseDtoRepos<Repository>)
+        fun onFailurePerson(networkError: NetworkError)
+    }
+
     fun getUsers( query:String,listener: OnGetUsersListener)
 
     fun getRepos( query:String,listener: OnGetReposListener)

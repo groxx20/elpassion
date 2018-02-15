@@ -1,5 +1,6 @@
 package com.elpassion.assignment.ui.main
 
+import com.elpassion.assignment.model.ItemList
 import com.elpassion.assignment.model.Repository
 import com.elpassion.assignment.model.User
 
@@ -12,7 +13,7 @@ interface MainPresenter {
 
     fun getRepos(repo:String)
 
-    fun mergeLists(users: List<User>, repos: List<Repository>)
+    fun sortList(itemList: List<ItemList>)
 
     fun convertUsersToList ( users: List<User>)
 

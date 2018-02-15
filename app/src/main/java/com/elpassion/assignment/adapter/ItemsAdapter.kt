@@ -8,22 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.elpassion.assignment.R
+import com.elpassion.assignment.model.ItemList
 import com.elpassion.assignment.ui.main.MainView
 
 /**
  * Created by pavel on 10/2/18.
  */
 
-class ItemsAdapter(private val placeList: List<Place>, private val context: Context, private val listener: MainView): RecyclerView.Adapter<ItemsAdapter.ViewHolder>() {
+class ItemsAdapter(private val itemsList: List<ItemList>, private val context: Context, private val listener: MainView): RecyclerView.Adapter<ItemsAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        holder?.txtName?.text = placeList[position].name
+        /*holder?.txtName?.text = placeList[position].name
 
         val population = context.resources.getString(R.string.population) + " " + placeList[position].population.toString()
         holder?.txtCountry?.text = population
         holder?.txtNational?.text = placeList[position].countryCode
 
-        holder?.card?.setOnClickListener{ listener.goNext(placeList[position].name) }
+        holder?.card?.setOnClickListener{ listener.goNext(placeList[position].name) } */
 
     }
 
@@ -33,7 +34,7 @@ class ItemsAdapter(private val placeList: List<Place>, private val context: Cont
     }
 
     override fun getItemCount(): Int {
-        return placeList.size
+        return itemsList.size
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
